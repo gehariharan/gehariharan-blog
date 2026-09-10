@@ -1,0 +1,29 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "gehariharan-blog",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-09-10",
+	"assets": {
+		"directory": "./public"
+	},
+	"workers_dev": true,
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "gehariharan-blog",
+			"database_id": "d864d5d9-dfde-4b29-8f67-152875d71965"
+		}
+	],
+	"send_email": [
+		{
+			"name": "EMAIL"
+		}
+	],
+	"vars": {
+		"SITE_URL": "https://gehariharan.com",
+		"MAIL_FROM": "newsletter@gehariharan.com"
+	},
+	"observability": {
+		"enabled": true
+	}
+}

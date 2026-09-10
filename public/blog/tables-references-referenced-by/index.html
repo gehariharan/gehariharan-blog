@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="We create many tables in a schema with lot of Constraints among them. The linking constraint Foreign Key which exists among tables will sometime create spaghett…" />
+		<title>Tables References &amp; Referenced By &mdash; Gehariharan</title>
+		<link rel="canonical" href="https://gehariharan.com/blog/tables-references-referenced-by/" />
+		<link rel="stylesheet" href="/styles.css" />
+		<link rel="alternate" type="application/rss+xml" title="Gehariharan" href="/rss.xml" />
+	</head>
+	<body>
+		<main class="page">
+			<nav>
+				<a class="wordmark" href="/">Gehariharan</a>
+				<a class="nav-link" href="/blog/">All writing</a>
+			</nav>
+			<header class="post-header">
+				<h1 class="post-title">Tables References &amp; Referenced By</h1>
+				<p class="post-meta"><time datetime="2007-05-22">May 22, 2007</time> &middot; Programming</p>
+			</header>
+			<article class="post-body">
+<div style="text-align: justify;">We create many tables in a schema with lot of Constraints among them. The linking constraint Foreign Key which exists among tables will sometime create spaghetti schema. Consider a schema with 4 tables as show in the ER diagram below. (You can <a href="http://gehariharan.googlepages.com/Create_Script.sql">download</a> the script for creating these tables and constrains)</div><br/><a href="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj9hMC88ID4EE5fT8M682WQPHUvkCR5pQiRaHl9LUAtdvd2wPdGThvPHM-nsRlOV_8NwJ9V98lLp76vvgFG_nsNzeNJbCpVrMZgoyaExJyxIOQuLJ8SrNEX32koccGM5XM_DKjSRfUpyjAu/s1600-h/ER+Diagram.JPG" onblur="try {parent.deselectBloggerImageGracefully();} catch(e) {}"><img alt="" border="0" id="BLOGGER_PHOTO_ID_5067650618895546050" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEj9hMC88ID4EE5fT8M682WQPHUvkCR5pQiRaHl9LUAtdvd2wPdGThvPHM-nsRlOV_8NwJ9V98lLp76vvgFG_nsNzeNJbCpVrMZgoyaExJyxIOQuLJ8SrNEX32koccGM5XM_DKjSRfUpyjAu/s320/ER+Diagram.JPG" style="cursor: pointer; display: block; margin: 0px auto 10px; text-align: center;" /></a>  <br/><div class="MsoNormal" style="text-align: justify;">It may be some times required to fetch the foreign key relationship between tables to identify the Parent-Child relationship. To identify those you can use the following queries will be handy for you. <span style="font-family: georgia; font-size: 12pt;">This query uses the sys user’s constraint definition tables for the database.</span></div><div style="text-align: justify;"></div><div class="MsoNormal" style="text-align: justify;"><span style="font-size: 85%;"></span>  </div><div class="MsoNormal" style="text-align: justify;">To Identify the Tables referencing the Given Table:</div><div class="MsoNormal"><span style="color: #3366ff; font-size: 85%;"></span></div><span style="color: #3366ff; font-size: 85%;"><blockquote>select  ro.name table_name,<br/>substr(initcap(cc.column_name), 1, 30) column_name, cc.position,<br/>cn.name constraint_name, ru.name owner<br/>from   sys.obj$ o, sys.user$ u, sys.con$ cn, sys.cdef$ c, sys.obj$ ro,<br/>dba_cons_columns cc, sys.con$ rcn, sys.user$ ru<br/>where  o.owner#      = u.user#<br/>and    u.name        = '&amp;&amp;SCHEMANAME'<br/>and    o.name        = '&amp;&amp;TABLENAME'<br/>and    c.robj#       = o.obj#<br/>and    c.con#        = cn.con#<br/>and    ro.obj#       = c.obj#<br/>and    cc.owner      = u.name<br/>and    cc.table_name = o.name<br/>and    rcn.con#      = c.rcon#<br/>and    cn.owner#     = ru.user#<br/>and    c.type#       = 4<br/>and    cc.constraint_name = rcn.name<br/>order by u.name, ro.name, cn.name, cc.position;</blockquote></span>To Identify the Tables referred by the Given Table:<br/><div class="MsoNormal"><span style="color: #3366ff; font-size: 85%;"></span></div><span style="color: #3366ff; font-size: 85%;"><blockquote>select a.table_name, initcap(b.column_name) column_name, b.position,<br/>a.constraint_name, a.owner<br/>from  (select ao.name table_name,<br/>au.name owner,<br/>bcn.name constraint_name,<br/>decode(ac.type#, 4,<br/>decode(ac.refact, 1, 'CASCADE', 2, 'SET NULL', 'NO ACTION'),<br/>null) delete_rule,<br/>bo.name tn<br/>from   sys.cdef$ bc, sys.con$ bcn, sys.obj$ bo, sys.user$ bu,<br/>sys.con$ brc, sys.user$ bru, sys.obj$ bro,<br/>sys.cdef$ ac, sys.con$ acn, sys.obj$ ao, sys.user$ au<br/>where  bc.con# = bcn.con#<br/>and    bc.obj# = bo.obj#<br/>and    bo.owner# = bu.user#<br/>and    bu.name = '&amp;&amp;SCHEMANAME'<br/>and    bo.name = '&amp;&amp;TABLENAME'<br/>and    bc.rcon# = brc.con#(+)<br/>and    brc.owner# = bru.user#(+)<br/>and    bc.robj# = bro.obj#(+)<br/>and    ac.con# = bc.rcon#<br/>and    ac.con# = acn.con#<br/>and    ao.obj# = ac.obj#<br/>and    ao.owner# = au.user#<br/>and    ac.type# in (2,3)) a,<br/>dba_cons_columns b<br/>where b.table_name = a.tn<br/>and   b.constraint_name = a.constraint_name<br/>order by a.table_name, a.constraint_name, b.position;</blockquote></span><span style="color: #3366ff; font-size: 85%;"><span style="font-size: 100%;"><span style="color: #333333;">Hope this is useful for you at times :)</span></span></span>
+			</article>
+			<a class="back-link" href="/blog/">&larr; Back to all writing</a>
+			<footer>
+				<span>&copy; 2026 Gehariharan</span>
+				<span>Built on Cloudflare</span>
+			</footer>
+		</main>
+	</body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="Though I work with Oracle DB for the past nine months religiously this is my first post anywhere related to oracle. Its high time , I thought to give some post…" />
+		<title>Concatenating Rows in a Table &mdash; Gehariharan</title>
+		<link rel="canonical" href="https://gehariharan.com/blog/concatenating-rows-in-table/" />
+		<link rel="stylesheet" href="/styles.css" />
+		<link rel="alternate" type="application/rss+xml" title="Gehariharan" href="/rss.xml" />
+	</head>
+	<body>
+		<main class="page">
+			<nav>
+				<a class="wordmark" href="/">Gehariharan</a>
+				<a class="nav-link" href="/blog/">All writing</a>
+			</nav>
+			<header class="post-header">
+				<h1 class="post-title">Concatenating Rows in a Table</h1>
+				<p class="post-meta"><time datetime="2007-03-09">March 9, 2007</time> &middot; Programming</p>
+			</header>
+			<article class="post-body">
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<span style="font-family: georgia;">Though I work with Oracle DB for the past nine months religiously this is my first post anywhere related to oracle. Its high time , I thought to give some post on Oracle ,which are though not something which was never found by any other people but it was quite interesting for me when I first tried it. Though there are many virtuosos on oracle blogging around the world vigorously, I also wanted to be a small part on this big knowledge sharing base.<br />Concatenating the rows of the table will always be required when you are working with database. At those time the following query would be handy for you.<br /></span><span style="font-family: georgia;"><span style="font-size: 85%;">hari9ir2@GENEVART&gt;create table t(<br />2 name varchar2(20));<br />Table created.</span><span style="font-size: 85%;">hari9ir2@GENEVART&gt;</span></span><span style="font-family: georgia; font-size: 85%;">INSERT INTO t VALUES('Hari');</span><span style="font-family: georgia; font-size: 85%;">1 row created.<br />hari9ir2@GENEVART&gt;</span><span style="font-family: georgia; font-size: 85%;">INSERT INTO t VALUES('Haran');</span><span style="font-family: georgia; font-size: 85%;">1 row created.<br />hari9ir2@GENEVART&gt;</span><span style="font-family: georgia; font-size: 85%;">INSERT INTO t VALUES('Ragunathan');</span><span style="font-size: 85%;"></span><span style="font-family: georgia; font-size: 85%;">1 row created.</span><span style="font-size: 85%;"><br /><span style="font-family: georgia;">SELECT LTRIM(MAX(</span></span><span style="font-family: georgia;"><span style="font-size: 85%;">SYS_CONNECT_BY_PATH(NAME , ' ')),' ')AS Full_Name<br />FROM (SELECT NAME , ROWNUM rn FROM t)<br />START WITH rn = 1<br />CONNECT BY PRIOR rn = rn -1;</span><br /><br /><span style="font-size: 85%;">FULL_NAME</span><br />------------------------<br />Hari Haran Ragunathan<br /></span>To know more on the this refer this column in oracle magazine - <a href="http://www.oracle.com/technology/oramag/oracle/05-may/o35asktom.html"><span style="font-family: georgia;">On Favorites and Connect by .</span></a><span style="font-family: georgia;"><br />Hope this tip could be useful for you.</span></div>
+
+			</article>
+			<a class="back-link" href="/blog/">&larr; Back to all writing</a>
+			<footer>
+				<span>&copy; 2026 Gehariharan</span>
+				<span>Built on Cloudflare</span>
+			</footer>
+		</main>
+	</body>
+</html>

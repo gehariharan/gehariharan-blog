@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="Haloscan is a site that offers free commenting and trackback services for blogs. One of the feature which Blogger does not offer is Trackbacks . This tempted me…" />
+		<title>At last! Relieved from Haloscan &mdash; Gehariharan</title>
+		<link rel="canonical" href="https://gehariharan.com/blog/at-last-relieved-from-haloscan/" />
+		<link rel="stylesheet" href="/styles.css" />
+		<link rel="alternate" type="application/rss+xml" title="Gehariharan" href="/rss.xml" />
+	</head>
+	<body>
+		<main class="page">
+			<nav>
+				<a class="wordmark" href="/">Gehariharan</a>
+				<a class="nav-link" href="/blog/">All writing</a>
+			</nav>
+			<header class="post-header">
+				<h1 class="post-title">At last! Relieved from Haloscan</h1>
+				<p class="post-meta"><time datetime="2008-04-28">April 28, 2008</time> &middot; Systems, Technology, Web</p>
+			</header>
+			<article class="post-body">
+<div dir="ltr" style="text-align: left;" trbidi="on">
+<div class="Section1">
+<div class="MsoNormal" style="text-align: justify;">
+<span style="font-family: Arial;"><span style="font-family: Arial;"><a href="http://www.haloscan.com/">Haloscan</a> is a site that offers free commenting and trackback services for blogs. One of the feature which Blogger does not offer is <a href="http://en.wikipedia.org/wiki/Trackback">Trackbacks</a>. This tempted me in switching to some other commenting sites. So when I encountered Haloscan I did not even think for a moment and switched to Haloscan commenting. The problem is that to switch to Haloscan commenting, you need to download the existing template of your blogger. This has to be uploaded to Haloscan account and the template will be altered and given a new template. This new template I uploaded without even storing a backup six months back. Now if I switch to any new template all my valuable scripts embedded in the code which I have used in it for analytics and other purpose will be gone for ever.</span></span></div>
+<div class="MsoNormal" style="text-align: justify;">
+<span style="font-family: Arial;"><span style="font-family: Arial;">But since them too many problems I have with the commenting system of Haloscan, though no trackbacks I have ever received for which I switched. Nowadays most of the people don’t bother to give trackback pings; instead they just post a comment with the link of their post. The main problems you will face are,<o:p></o:p></span></span></div>
+<ol style="margin-top: 0in;" type="1">
+<li class="MsoNormal" style="mso-list: l0 level1 lfo1;"><span style="font-family: Arial;"><span style="font-family: Arial;">It reduces the load time of the pages as the comment details are taken from a different site<o:p></o:p></span></span></li>
+<li class="MsoNormal" style="mso-list: l0 level1 lfo1;"><span style="font-family: Arial;"><span style="font-family: Arial;">The Comment page also takes a considerable time<o:p></o:p></span></span></li>
+<li class="MsoNormal" style="mso-list: l0 level1 lfo1;"><span style="font-family: Arial;"><span style="font-family: Arial;">No option of automatic restriction of anonymous comments<o:p></o:p></span></span></li>
+<li class="MsoNormal" style="mso-list: l0 level1 lfo1;"><span style="font-family: Arial;"><span style="font-family: Arial;">No profile image shown in bloggers with each comments are far better than Haloscan’s<o:p></o:p></span></span></li>
+<li class="MsoNormal" style="mso-list: l0 level1 lfo1;"><span style="font-family: Arial;"><span style="font-family: Arial;">Ad’s of Haloscan that cribs in the comment page.<o:p></o:p></span></span></li>
+</ol>
+<div class="MsoNormal">
+<span style="font-family: Arial;"><span style="font-family: Arial;"><o:p></o:p></span></span></div>
+<div class="MsoNormal" style="text-align: justify;">
+<span style="font-family: Arial;"><span style="font-family: Arial;">Since then I have been struggling to change the code to remove the Haloscan commenting and switch that to blogger comments which has improved a lot after the beta. But since the template was in XML I used to make mistakes every time and end up with an XML which was incomplete tags.<o:p></o:p></span></span></div>
+<div class="MsoNormal">
+<span style="font-family: Arial;"><span style="font-family: Arial;"><o:p></o:p></span></span></div>
+<div class="MsoNormal" style="text-align: justify;">
+<span style="font-family: Arial;"><span style="font-family: Arial;">So Today I forced myself to complete this task and finally I have converted the commenting system back to Blogger’s. For those who are having similar problem you need to follow these steps.<o:p></o:p></span></span></div>
+<ol style="margin-top: 0in;" type="1">
+<li class="MsoNormal" style="mso-list: l1 level1 lfo2;"><span style="font-family: Arial;"><span style="font-family: Arial;">Take a backup of your template<o:p></o:p></span></span></li>
+<li class="MsoNormal" style="mso-list: l1 level1 lfo2;"><span style="font-family: Arial;"><span style="font-family: Arial;">Then you need to look for the following parts in the template<o:p></o:p></span></span></li>
+</ol>
+<div class="MsoNormal" style="margin-left: 0.75in; text-indent: 0.25in;">
+<span style="font-family: Arial;"><span style="font-family: Arial;"><o:p></o:p></span></span></div>
+<div class="MsoNormal" style="margin-left: 0.75in; text-indent: 0.25in;">
+<span style="color: blue; font-family: Arial;"><span style="color: blue; font-family: Arial;">&lt;!-- start haloscan (part 1) --&gt; <o:p></o:p></span></span></div>
+<div class="MsoNormal" style="margin-left: 0.75in; text-indent: 0.25in;">
+<span style="color: blue; font-family: Arial;"><span style="color: blue; font-family: Arial;">&lt;script src='http://www.haloscan.com/load/</span></span><span style="font-family: Arial;"><span style="font-family: Arial;"> username<span style="color: blue;"><span style="color: blue;"> type='text/javascript'&gt; &lt;/script&gt;<o:p></o:p></span></span></span></span></div>
+<div class="MsoNormal" style="margin-left: 0.75in; text-indent: 0.25in;">
+<span style="color: blue; font-family: Arial;"><span style="color: blue; font-family: Arial;">&lt;span class='post-comment-link'&gt;<o:p></o:p></span></span></div>
+<div class="MsoNormal" style="margin-left: 1in;">
+<span style="color: blue; font-family: Arial;"><span style="color: blue; font-family: Arial;">&lt;a class='comment-link' expr:href='&amp;quot;http://www.haloscan.com/comments/</span></span><span style="font-family: Arial;"><span style="font-family: Arial;"> username<span style="color: blue;"><span style="color: blue;"> /&amp;quot; + data:post.id + &amp;quot;/&amp;quot;' expr:onclick='&amp;quot;HaloScan(&amp;quot; + &amp;quot;\&amp;quot;&amp;quot;+ data:post.id + &amp;quot;\&amp;quot;&amp;quot; + &amp;quot;);return false;&amp;quot;'&gt;<o:p></o:p></span></span></span></span></div>
+<div class="MsoNormal" style="margin-left: 0.75in; text-indent: 0.25in;">
+<span style="color: blue; font-family: Arial;"><span style="color: blue; font-family: Arial;">&lt;script type='text/javascript'&gt;postCount(&amp;#39;&lt;data:post.id/&gt;&amp;#39;);&lt;/script&gt;<o:p></o:p></span></span></div>
+<div class="MsoNormal" style="margin-left: 0.75in; text-indent: 0.25in;">
+<span style="color: blue; font-family: Arial;"><span style="color: blue; font-family: Arial;">&lt;/a&gt; <o:p></o:p></span></span></div>
+<div class="MsoNormal" style="margin-left: 1in;">
+<span style="color: blue; font-family: Arial;"><span style="color: blue; font-family: Arial;">&lt;a class='comment-link' expr:href='&amp;quot;http://www.haloscan.com/tb/</span></span><span style="font-family: Arial;"><span style="font-family: Arial;"> username<span style="color: blue;"><span style="color: blue;"> /&amp;quot; + data:post.id + &amp;quot;/&amp;quot;' expr:onclick='&amp;quot;HaloScanTB(&amp;quot; + &amp;quot;\&amp;quot;&amp;quot;+ data:post.id + &amp;quot;\&amp;quot;&amp;quot; + &amp;quot;);return false;&amp;quot;'&gt;<o:p></o:p></span></span></span></span></div>
+<div class="MsoNormal" style="margin-left: 0.75in; text-indent: 0.25in;">
+<span style="color: blue; font-family: Arial;"><span style="color: blue; font-family: Arial;">&lt;script type='text/javascript'&gt;postCountTB(&amp;#39;&lt;data:post.id/&gt;&amp;#39;);&lt;/script&gt;<o:p></o:p></span></span></div>
+<div class="MsoNormal" style="margin-left: 0.75in; text-indent: 0.25in;">
+<span style="color: blue; font-family: Arial;"><span style="color: blue; font-family: Arial;">&lt;/a&gt;<o:p></o:p></span></span></div>
+<div class="MsoNormal" style="margin-left: 0.75in; text-indent: 0.25in;">
+<span style="color: blue; font-family: Arial;"><span style="color: blue; font-family: Arial;">&lt;/span&gt;<o:p></o:p></span></span></div>
+<div class="MsoNormal" style="margin-left: 0.75in; text-indent: 0.25in;">
+<span style="color: blue; font-family: Arial;"><span style="color: blue; font-family: Arial;">&lt;!-- end haloscan --&gt; <o:p></o:p></span></span></div>
+<div class="MsoNormal" style="margin-left: 0.5in; text-indent: 0.5in;">
+<span style="color: blue; font-family: Arial;"><span style="color: blue; font-family: Arial;"><o:p></o:p></span></span></div>
+<div class="MsoNormal" style="margin-left: 0.5in; text-indent: 0.5in;">
+<span style="color: red; font-family: Arial;"><span style="color: red; font-family: Arial;">-- Same as above Part1, Part 2 also will be embedded in the XML.<o:p></o:p></span></span></div>
+<div class="MsoNormal" style="text-indent: 0.25in;">
+<span style="color: blue; font-family: Arial;"><span style="color: blue; font-family: Arial;"><o:p></o:p></span></span></div>
+<div class="MsoNormal" style="margin-left: 0.75in; text-indent: 0.25in;">
+<span style="color: blue; font-family: Arial;"><span style="color: blue; font-family: Arial;">&lt;!-- start haloscan (part 3) --&gt;<o:p></o:p></span></span></div>
+<div class="MsoNormal" style="margin-left: 0.75in; text-indent: 0.25in;">
+<span style="color: blue; font-family: Arial;"><span style="color: blue; font-family: Arial;">&lt;a class='feed-link' href='http://www.haloscan.com/members/rss.php?user=</span></span><span style="font-family: Arial;"><span style="font-family: Arial;">username<span style="color: blue;"><span style="color: blue;"> target='_blank'&gt;Comment Feed (RSS)&lt;/a&gt;<o:p></o:p></span></span></span></span></div>
+<div class="MsoNormal" style="margin-left: 0.75in; text-indent: 0.25in;">
+<span style="color: blue; font-family: Arial;"><span style="color: blue; font-family: Arial;">&lt;!-- end haloscan --&gt;<o:p></o:p></span></span></div>
+<ol start="3" style="margin-top: 0in;" type="1">
+<li class="MsoNormal" style="mso-list: l1 level1 lfo2;"><span style="font-family: Arial;"><span style="font-family: Arial;">Now the above tags has to be removed <o:p></o:p></span></span></li>
+<li class="MsoNormal" style="mso-list: l1 level1 lfo2;"><span style="font-family: Arial;"><span style="font-family: Arial;">Now the hilarious task is to insert blogger commenting. In the place of Part 1 &amp; Part 2 of Haloscan code the following code is replaced<o:p></o:p></span></span></li>
+</ol>
+<div class="MsoNormal" style="margin-left: 0.5in;">
+<span style="color: blue; font-family: Arial;"><span style="color: blue; font-family: Arial;"><o:p></o:p></span></span></div>
+<div class="MsoNormal" style="margin-left: 0.5in;">
+<span style="color: blue; font-family: Arial;"><span style="color: blue; font-family: Arial;">&lt;a class='comment-link' expr:href='data:post.addCommentUrl' expr:onclick='data:post.addCommentOnclick'&gt;&lt;b:if cond='data:post.numComments == 1'&gt;1 &lt;data:top.commentLabel/&gt;&lt;b:else/&gt;&lt;data:post.numComments/&gt; &lt;data:top.commentLabelPlural/&gt;&lt;/b:if&gt;&lt;/a&gt;<o:p></o:p></span></span></div>
+<div class="MsoNormal">
+<span style="font-family: Arial;"><span style="font-family: Arial;"><o:p></o:p></span></span></div>
+<ol start="5" style="margin-top: 0in;" type="1">
+<li class="MsoNormal" style="mso-list: l1 level1 lfo2;"><span style="font-family: Arial;"><span style="font-family: Arial;">For Part 3 the following code must be replaced.<o:p></o:p></span></span></li>
+</ol>
+<div class="MsoNormal" style="margin-left: 0.5in;">
+<span style="font-family: Arial;"><span style="font-family: Arial;"><o:p></o:p></span></span></div>
+<div class="MsoNormal" style="margin-left: 0.25in; text-indent: 0.25in;">
+<span style="color: blue; font-family: Arial;"><span style="color: blue; font-family: Arial;">&lt;a class='feed-link' expr:href='data:f.url' expr:type='data:f.mimeType' target='_blank'&gt;&lt;data:f.name/&gt; (&lt;data:f.feedType/&gt;)&lt;/a&gt;<o:p></o:p></span></span></div>
+<ol start="6" style="margin-top: 0in;" type="1">
+<li class="MsoNormal" style="mso-list: l1 level1 lfo2; text-align: justify;"><span style="font-family: Arial;"><span style="font-family: Arial;">Now still you will face a problem that comments will not come for individual posts page. To fix that you need to add the following code just above the line where you have replace Part 2. Since that code is long you can get the patch <a href="http://gehariharan.googlepages.com/Patch.txt">here</a>.<o:p></o:p></span></span></li>
+<li class="MsoNormal" style="mso-list: l1 level1 lfo2; text-align: justify;"><span style="font-family: Arial;"><span style="font-family: Arial;">Alas! You landed back to your home land of blogger commenting. You would have lost all the old comments of Haloscan , that you can compensate with the Haloscan widget which you can see in the side bar of this blog.<o:p></o:p></span></span></li>
+</ol>
+<div class="MsoNormal">
+<span style="font-family: Arial;"><span style="font-family: Arial;"><o:p></o:p></span></span></div>
+<div class="MsoNormal">
+<span style="font-family: Arial;"><span style="font-family: Arial;">Hope the above steps would help you in removing the irritating Haloscan commenting.<o:p></o:p></span></span></div>
+</div>
+</div>
+
+			</article>
+			<a class="back-link" href="/blog/">&larr; Back to all writing</a>
+			<footer>
+				<span>&copy; 2026 Gehariharan</span>
+				<span>Built on Cloudflare</span>
+			</footer>
+		</main>
+	</body>
+</html>
