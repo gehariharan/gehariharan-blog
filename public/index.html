@@ -19,27 +19,30 @@
 			</nav>
 
 			<section class="hero">
-				<div class="eyebrow">Notes from Gehariharan</div>
-				<h1>Build a life worth writing about.</h1>
-				<p class="intro">
-					Thoughts on technology, building, travel, and the ideas that stay with us.
-				</p>
+				<div class="avatar" aria-hidden="true">
+					<div class="avatar-fallback">GH</div>
+				</div>
+				<div class="intro-block">
+					<h1>Hi. I'm @gehariharan and you've found my blog!</h1>
+					<p>
+						I write about technology, building things, cycling, travel, and whatever else
+						is on my mind. Long-form notes, no fixed schedule.
+					</p>
+					<p>Never miss a post: get new writing by email before it goes anywhere else.</p>
 
-				<section class="subscribe" aria-labelledby="subscribe-heading">
-					<h2 class="subscribe-title" id="subscribe-heading">Get the next post first.</h2>
-					<p class="subscribe-copy">New writing arrives by email before it is shared anywhere else.</p>
-					<form id="subscribe-form">
-						<div class="form-row">
-							<input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" aria-label="Email address" required />
-							<button type="submit">Subscribe</button>
+					<div class="subscribe">
+						<form id="subscribe-form">
+							<div class="form-row">
+								<input id="email" name="email" type="email" autocomplete="email" placeholder="Type your email..." aria-label="Email address" required />
+								<button type="submit">Subscribe</button>
+							</div>
+							<p class="status" id="status" aria-live="polite"></p>
+						</form>
+						<div class="channels">
+							<a class="telegram" id="telegram-link" href="#" aria-disabled="true">Or subscribe on Telegram &rarr;</a>
 						</div>
-						<p class="status" id="status" aria-live="polite"></p>
-					</form>
-					<div class="channels">
-						<span>Or follow along on Telegram</span>
-						<a class="telegram" id="telegram-link" href="#" aria-disabled="true">Join Telegram</a>
 					</div>
-				</section>
+				</div>
 			</section>
 
 			<section id="writing" aria-labelledby="writing-heading">

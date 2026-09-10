@@ -22,6 +22,9 @@ interface Env {
 	EMAIL: EmailSender;
 	MAIL_FROM: string;
 	SITE_URL: string;
+	// Bound once the R2 bucket is created (see README "Migrating images to R2").
+	// Optional so the Worker keeps working before that binding exists.
+	MEDIA?: R2Bucket;
 }
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -136,6 +139,23 @@ async function unsubscribe(request: Request, env: Env): Promise<Response> {
 			);
 }
 
+async function serveMedia(request: Request, env: Env, key: string): Promise<Response> {
+	if (!env.MEDIA) {
+		return new Response("Not found", { status: 404 });
+	}
+
+	const object = await env.MEDIA.get(key);
+	if (!object) {
+		return new Response("Not found", { status: 404 });
+	}
+
+	const headers = new Headers();
+	object.writeHttpMetadata(headers);
+	headers.set("etag", object.httpEtag);
+	headers.set("cache-control", "public, max-age=31536000, immutable");
+	return new Response(object.body, { headers });
+}
+
 export default {
 	async fetch(request, env): Promise<Response> {
 		const url = new URL(request.url);
@@ -148,6 +168,9 @@ export default {
 		}
 		if (request.method === "GET" && url.pathname === "/api/unsubscribe") {
 			return unsubscribe(request, env);
+		}
+		if (request.method === "GET" && url.pathname.startsWith("/media/")) {
+			return serveMedia(request, env, url.pathname.slice("/media/".length));
 		}
 
 		const redirectTarget = blogRedirects[url.pathname];
