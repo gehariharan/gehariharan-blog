@@ -7,6 +7,16 @@
 		"directory": "./public",
 		"binding": "ASSETS"
 	},
+	"routes": [
+		{
+			"pattern": "gehariharan.com",
+			"custom_domain": true
+		},
+		{
+			"pattern": "www.gehariharan.com",
+			"custom_domain": true
+		}
+	],
 	"workers_dev": true,
 	"d1_databases": [
 		{
