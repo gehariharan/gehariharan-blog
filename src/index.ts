@@ -153,7 +153,9 @@ async function serveMedia(request: Request, env: Env, key: string): Promise<Resp
 	object.writeHttpMetadata(headers);
 	headers.set("etag", object.httpEtag);
 	headers.set("cache-control", "public, max-age=31536000, immutable");
-	return new Response(object.body, { headers });
+	// R2Bucket.get() has no body for HEAD requests; avoid passing a null body
+	// with a non-null Content-Length, which some clients reject.
+	return new Response(request.method === "HEAD" ? null : object.body, { headers });
 }
 
 export default {
@@ -169,7 +171,7 @@ export default {
 		if (request.method === "GET" && url.pathname === "/api/unsubscribe") {
 			return unsubscribe(request, env);
 		}
-		if (request.method === "GET" && url.pathname.startsWith("/media/")) {
+		if ((request.method === "GET" || request.method === "HEAD") && url.pathname.startsWith("/media/")) {
 			return serveMedia(request, env, url.pathname.slice("/media/".length));
 		}
 

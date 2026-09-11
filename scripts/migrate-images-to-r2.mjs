@@ -135,9 +135,17 @@ function upload() {
 
 function rewrite() {
 	const manifest = loadManifest();
-	const urlToNewPath = new Map(manifest.filter((e) => e.uploaded).map((e) => [e.url, `${MEDIA_PREFIX}${e.file}`]));
+	// Sort longest-URL-first: some Blogger URLs are prefixes of other, more
+	// specific URLs (e.g. a base image URL vs. the same URL with a
+	// "/w640-h360/image.png" resize suffix appended). Replacing the shorter
+	// one first would also match inside the longer one and corrupt it, so we
+	// always replace the most specific (longest) URLs before their prefixes.
+	const entries = manifest
+		.filter((e) => e.uploaded)
+		.map((e) => [e.url, `${MEDIA_PREFIX}${e.file}`])
+		.sort((a, b) => b[0].length - a[0].length);
 
-	if (urlToNewPath.size === 0) {
+	if (entries.length === 0) {
 		throw new Error(`No uploaded images found in manifest. Run "upload" first.`);
 	}
 
@@ -148,7 +156,7 @@ function rewrite() {
 	for (const file of files) {
 		const content = readFileSync(file, "utf8");
 		let updated = content;
-		for (const [oldUrl, newPath] of urlToNewPath) {
+		for (const [oldUrl, newPath] of entries) {
 			if (updated.includes(oldUrl)) {
 				updated = updated.split(oldUrl).join(newPath);
 				replacedUrls += 1;
