@@ -3,7 +3,9 @@
 	"version": "0.0.0",
 	"private": true,
 	"scripts": {
-		"deploy": "wrangler deploy",
+		"build:posts": "node scripts/build-posts.mjs",
+		"new:post": "node scripts/new-post.mjs",
+		"deploy": "node scripts/build-posts.mjs && wrangler deploy",
 		"dev": "wrangler dev",
 		"start": "wrangler dev",
 		"test": "vitest",
