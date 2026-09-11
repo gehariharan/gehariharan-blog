@@ -180,6 +180,14 @@ export default {
 			return Response.redirect(new URL(redirectTarget, url).toString(), 301);
 		}
 
+		if (request.method === "GET" && (url.pathname === "/" || url.pathname === "")) {
+			const cookieHeader = request.headers.get("cookie") || "";
+			const hasSkipped = /(?:^|;\s*)skip_landing=true(?:;|$)/.test(cookieHeader);
+			if (hasSkipped && !url.searchParams.has("landing")) {
+				return Response.redirect(new URL("/blog/", url).toString(), 302);
+			}
+		}
+
 		return env.ASSETS.fetch(request);
 	},
 } satisfies ExportedHandler<Env>;

@@ -5,22 +5,26 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta
 			name="description"
-			content="Notes on technology, building, and the things worth thinking about."
+			content="Notes on technology, building, and the things worth thinking about by @gehariharan."
 		/>
-		<title>Gehariharan</title>
+		<title>Gehariharan &mdash; Personal Blog</title>
+		<link rel="icon" type="image/png" href="/favicon.png" />
 		<link rel="stylesheet" href="/styles.css" />
 		<link rel="alternate" type="application/rss+xml" title="Gehariharan" href="/rss.xml" />
+		<script>
+			// Client-side fallback: If user skipped landing, redirect to /blog/ unless explicit override
+			if (!window.location.search.includes("landing=true")) {
+				if (document.cookie.split("; ").some((c) => c.startsWith("skip_landing=true"))) {
+					window.location.replace("/blog/");
+				}
+			}
+		</script>
 	</head>
-	<body>
-		<main class="page">
-			<nav>
-				<a class="wordmark" href="/">Gehariharan</a>
-				<a class="nav-link" href="#writing">Writing</a>
-			</nav>
-
-			<section class="hero">
+	<body class="landing-body">
+		<main class="landing-container">
+			<div class="landing-hero">
 				<div class="avatar" aria-hidden="true">
-					<div class="avatar-fallback">GH</div>
+					<img src="/avatar-square.jpg" alt="Hariharan Ragunathan" />
 				</div>
 				<div class="intro-block">
 					<h1>Hi. I'm @gehariharan and you've found my blog!</h1>
@@ -38,63 +42,25 @@
 							</div>
 							<p class="status" id="status" aria-live="polite"></p>
 						</form>
-						<div class="channels">
+
+						<div class="landing-footer-links">
 							<a class="telegram" id="telegram-link" href="#" aria-disabled="true">Or subscribe on Telegram &rarr;</a>
+							<span class="dot-separator">&bull;</span>
+							<button type="button" class="no-thanks-link" id="no-thanks-btn">No thanks, take me to the posts &rarr;</button>
 						</div>
 					</div>
 				</div>
-			</section>
-
-			<section id="writing" aria-labelledby="writing-heading">
-				<p class="section-label" id="writing-heading">Selected writing</p>
-				<div class="posts">
-					<!-- LATEST_POSTS_START -->
-					<a class="post" href="/blog/masks-masks-masks-covid-story-from-us/">
-						<time datetime="2021-04-08">Apr 2021</time>
-						<div>
-							<h2>Masks Masks Masks !!! A COVID Story from us.</h2>
-							<p class="excerpt">We all want to help one another, human beings are like that We want to live by each other's happiness, not by each other's misery - Charlie…</p>
-						</div>
-					</a>
-					<a class="post" href="/blog/a-decade-which-went-fast/">
-						<time datetime="2020-03-29">Mar 2020</time>
-						<div>
-							<h2>A decade, which went fast</h2>
-							<p class="excerpt">10 years back I posted about the year book that never came &amp;nbsp;when I left XLRI. Can't believe that I had spent the next decade with Micro…</p>
-						</div>
-					</a>
-					<a class="post" href="/blog/ramrod-2019-late-report/">
-						<time datetime="2019-12-27">Dec 2019</time>
-						<div>
-							<h2>RAMROD 2019, Late report</h2>
-							<p class="excerpt">A very late post after RAMROD that happened in July this year, also the first post in 2019 , when it is just 3 days to complete the year. Di…</p>
-						</div>
-					</a>
-					<a class="post" href="/blog/colonial-creek-to-mazama/">
-						<time datetime="2018-07-30">Jul 2018</time>
-						<div>
-							<h2>Colonial Creek to Mazama</h2>
-							<p class="excerpt">North cascades national park’s Highway 20 is one of the challenging biking routes in Washington. This year I had the opportunity to ride twi…</p>
-						</div>
-					</a>
-					<a class="post" href="/blog/ramrod-2018-training-and-ride-report/">
-						<time datetime="2018-07-29">Jul 2018</time>
-						<div>
-							<h2>RAMROD 2018 , Training and Ride Report</h2>
-							<p class="excerpt">After RAMROD 2017 experience I was really interested to participate in the ride this year as well. Thanks to Tim, I got a bypass for 2018 ri…</p>
-						</div>
-					</a>
-					<!-- LATEST_POSTS_END -->
-				</div>
-				<a class="see-all" href="/blog/">See all writing &rarr;</a>
-			</section>
-
-			<footer>
-				<span>&copy; 2026 Gehariharan</span>
-				<span>Built on Cloudflare</span>
-			</footer>
+			</div>
 		</main>
+
 		<script>
+			// Set 1-year skip cookie and go to blog
+			document.getElementById("no-thanks-btn")?.addEventListener("click", () => {
+				const maxAge = 60 * 60 * 24 * 365;
+				document.cookie = `skip_landing=true; path=/; max-age=${maxAge}; SameSite=Lax`;
+				window.location.href = "/blog/";
+			});
+
 			const form = document.querySelector("#subscribe-form");
 			const status = document.querySelector("#status");
 
@@ -110,6 +76,14 @@
 					});
 					const result = await response.json();
 					status.textContent = result.message || result.error || "Something went wrong. Please try again.";
+					if (response.ok) {
+						// Auto-set cookie and navigate to blog after subscribing
+						setTimeout(() => {
+							const maxAge = 60 * 60 * 24 * 365;
+							document.cookie = `skip_landing=true; path=/; max-age=${maxAge}; SameSite=Lax`;
+							window.location.href = "/blog/";
+						}, 2000);
+					}
 				} catch {
 					status.textContent = "Unable to subscribe right now. Please try again.";
 				}

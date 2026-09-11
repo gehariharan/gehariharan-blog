@@ -1,85 +1,60 @@
 # gehariharan.com
 
-A Cloudflare-native personal blog and newsletter foundation. Static assets are served from
-the Worker; subscriptions are stored in D1 and confirmed through Cloudflare Email Service.
+A minimalist, Cloudflare-native personal blog and newsletter platform for **[gehariharan.com](https://gehariharan.com)**, migrated from Blogger.
 
-## Cloudflare resources
+## Architecture
 
-1. Create the D1 database:
+- **Edge Runtime:** Cloudflare Workers (`src/index.ts`, `wrangler.jsonc`)
+- **Static Delivery:** Worker Static Assets (`public/`)
+- **Database:** Cloudflare D1 (`gehariharan-blog`) for subscriber list
+- **Media Storage:** Cloudflare R2 (`gehariharan-blog-media`) for images and attachments
+- **Email Service:** Cloudflare Email Routing / Sending (`newsletter@gehariharan.com`)
+- **CI/CD:** GitHub Actions (`.github/workflows/deploy.yml`) auto-deploying on push to `main`
 
-   ```sh
-   npx wrangler d1 create gehariharan-blog
-   ```
+---
 
-2. Copy the returned `database_id` into `wrangler.jsonc`.
-3. Apply the subscription schema:
+## Authoring & Publishing Workflow
 
-   ```sh
-   npx wrangler d1 migrations apply gehariharan-blog --remote
-   ```
-
-4. Configure and verify `newsletter@gehariharan.com` in Cloudflare Email Service, then
-   deploy:
-
-   ```sh
-   npm run deploy
-   ```
-
-The `MAIL_FROM` and `SITE_URL` values in `wrangler.jsonc` must match the verified sending
-address and production domain before deployment.
-
-## Publishing
-
-The landing page is in `public/index.html`. Blog content is migrated from the Blogger WXR
-export via `scripts/migrate-blogger.mjs` (see below), which generates the archive, RSS feed,
-sitemap, and permanent redirects automatically.
-
-### Migrating Blogger content
-
+### 1. Draft a New Post
+Use the scaffolding CLI helper:
 ```sh
-node scripts/migrate-blogger.mjs
+node scripts/new-post.mjs "My First New Post"
+```
+This creates `posts/my-first-new-post.md` with prefilled YAML frontmatter.
+
+### 2. Build Static HTML
+Compile Markdown posts into static pages (`public/blog/`), update the archive, RSS feed (`public/rss.xml`), and sitemap (`public/sitemap.xml`):
+```sh
+npm run build:posts
 ```
 
-Reads `migration/blogger-export.xml` and (re)generates `public/blog/<slug>/index.html` for
-every post, `public/blog/index.html` (archive), `public/rss.xml`, `public/sitemap.xml`,
-`src/redirects.ts` (old Blogger URL → new slug 301 redirects), and the homepage's latest
-posts section.
+### 3. Deploy
+Deploy directly to Cloudflare:
+```sh
+npm run deploy
+```
+Or push to `main` on GitHub to trigger the automated GitHub Actions deployment.
 
-### Migrating images to R2
+---
 
-Post content currently hotlinks images from `blogger.googleusercontent.com`. To move them to
-your own Cloudflare R2 storage instead:
+## Agent Instructions & Author Persona
 
-1. Enable R2 once in the Cloudflare dashboard: **dashboard → your account → R2 → Enable R2**
-   (free tier: 10 GB storage, plenty for the ~106 images in this blog).
-2. Create the bucket:
+See **[`AGENTS.md`](./AGENTS.md)** (or **[`CLAUDE.md`](./CLAUDE.md)**) for comprehensive authoring guidelines, developer instructions, and a detailed synthesis of the author's voice, writing persona, and content pillars derived from 190+ historical posts.
 
-   ```sh
-   npx wrangler r2 bucket create gehariharan-blog-media
-   ```
+---
 
-3. Add the binding to `wrangler.jsonc`:
+## Development & Local Testing
 
-   ```jsonc
-   "r2_buckets": [
-     { "binding": "MEDIA", "bucket_name": "gehariharan-blog-media" }
-   ]
-   ```
+Start the local Worker runtime with Miniflare / Wrangler:
+```sh
+npm run dev
+```
+Test the landing page, newsletter submission, and cookie bypass locally at `http://localhost:8787`.
 
-4. Run the migration pipeline (extract + download already done; re-run `extract`/`download`
-   only if new posts are added later):
+---
 
-   ```sh
-   node scripts/migrate-images-to-r2.mjs extract    # scan public/blog/** for image URLs
-   node scripts/migrate-images-to-r2.mjs download    # download into migration/images/files/
-   node scripts/migrate-images-to-r2.mjs upload      # upload to the R2 bucket
-   node scripts/migrate-images-to-r2.mjs rewrite     # rewrite post HTML to use /media/<file>
-   ```
+## Historical Blogger Migration & Images
 
-5. Deploy: `npm run deploy`. The Worker already serves `/media/*` from the `MEDIA` R2
-   binding (`src/index.ts`) — it 404s gracefully today since the binding doesn't exist yet.
+- `scripts/migrate-blogger.mjs`: Parses `migration/blogger-export.xml` into the initial 190 static HTML posts and generates 301 legacy redirects in `src/redirects.ts`.
+- `scripts/migrate-images-to-r2.mjs`: Extracts external Blogger images, downloads them locally, uploads to Cloudflare R2 bucket `gehariharan-blog-media`, and rewrites URLs to `/media/<hash>.<ext>`.
 
-## Telegram
-
-Set the `href` and remove `aria-disabled="true"` on `#telegram-link` in
-`public/index.html` once the Telegram channel has been created.
