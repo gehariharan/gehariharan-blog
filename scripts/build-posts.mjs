@@ -14,14 +14,14 @@ const PUBLIC_DIR = path.join(ROOT, "public");
 const BLOG_DIR = path.join(PUBLIC_DIR, "blog");
 const SITE_URL = "https://gehariharan.com";
 
-function escapeHtml(input) {
+export function escapeHtml(input) {
 	return (input || "")
 		.replace(/&/g, "&amp;")
 		.replace(/</g, "&lt;")
 		.replace(/>/g, "&gt;");
 }
 
-function escapeAttr(input) {
+export function escapeAttr(input) {
 	return escapeHtml(input).replace(/"/g, "&quot;");
 }
 

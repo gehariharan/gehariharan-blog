@@ -44,7 +44,14 @@ Compile Markdown posts into static HTML pages (`public/blog/<slug>/index.html`),
 npm run build:posts
 ```
 
-### C. Deploying
+### C. Projects Page and About Apps
+The Projects page (`public/projects/index.html`) and the "Apps I've built" section of the About page are generated from one list, `PROJECT_GROUPS` in `scripts/build-projects.mjs`, so the two pages always agree. Edit that list (logos live in `public/logos/`), then rebuild and commit the generated pages:
+```sh
+npm run build:projects
+```
+Do not hand-edit `public/projects/index.html` or the About page between its `apps:start` and `apps:end` markers; the build overwrites them.
+
+### D. Deploying
 Deploy directly to Cloudflare:
 ```sh
 npm run deploy

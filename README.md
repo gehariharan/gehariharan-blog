@@ -28,6 +28,11 @@ Compile Markdown posts into static pages (`public/blog/`), update the archive, R
 npm run build:posts
 ```
 
+The Projects page and the About page's "Apps I've built" section come from one list in `scripts/build-projects.mjs`. After editing it, run:
+```sh
+npm run build:projects
+```
+
 ### 3. Deploy
 Deploy directly to Cloudflare:
 ```sh
