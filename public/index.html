@@ -22,6 +22,15 @@
 	</head>
 	<body class="landing-body">
 		<main class="landing-container">
+			<nav class="landing-nav">
+				<div class="nav-links">
+					<a class="nav-link" href="/blog/">Writing</a>
+					<a class="nav-link" href="/projects/">Projects</a>
+					<a class="nav-link" href="/about/">About</a>
+					<a class="nav-link" href="https://github.com/gehariharan" target="_blank" rel="noopener noreferrer">GitHub</a>
+				</div>
+			</nav>
+
 			<div class="landing-hero">
 				<div class="avatar" aria-hidden="true">
 					<img src="/avatar-square.jpg" alt="Hariharan Ragunathan" />
@@ -29,12 +38,15 @@
 				<div class="intro-block">
 					<h1>Hi. I'm @gehariharan and you've found my blog!</h1>
 					<p>
-						I write about technology, building things, cycling, travel, and whatever else
-						is on my mind. Long-form notes, no fixed schedule.
+						I’m a software engineer, systems architect, and endurance cyclist based in Seattle.
+						Over the past 15+ years, I’ve built enterprise software, explored AI-agentic systems, scaled dealer platforms, and ridden thousands of miles across mountain passes.
 					</p>
-					<p>Never miss a post: get new writing by email before it goes anywhere else.</p>
+					<p>
+						I write about software craft, systems thinking, AI tools, endurance sports, and lessons from building things in the real world. Subscribe to get new essays delivered straight to your inbox.
+					</p>
 
-					<div class="subscribe">
+					<div class="subscribe" id="subscribe">
+						<p class="subscriber-proof">Never miss a post: <strong data-subscriber-count>1,001</strong> people read my posts in full by email, before it spreads anywhere else.</p>
 						<form id="subscribe-form">
 							<div class="form-row">
 								<input id="email" name="email" type="email" autocomplete="email" placeholder="Type your email..." aria-label="Email address" required />
@@ -44,7 +56,7 @@
 						</form>
 
 						<div class="landing-footer-links">
-							<a class="telegram" id="telegram-link" href="#" aria-disabled="true">Or subscribe on Telegram &rarr;</a>
+							<a class="x-follow-link" href="https://x.com/gehariharan" target="_blank" rel="noopener noreferrer">Or follow on X (@gehariharan) &rarr;</a>
 							<span class="dot-separator">&bull;</span>
 							<button type="button" class="no-thanks-link" id="no-thanks-btn">No thanks, take me to the posts &rarr;</button>
 						</div>
@@ -61,33 +73,7 @@
 				window.location.href = "/blog/";
 			});
 
-			const form = document.querySelector("#subscribe-form");
-			const status = document.querySelector("#status");
-
-			form.addEventListener("submit", async (event) => {
-				event.preventDefault();
-				const email = new FormData(form).get("email");
-				status.textContent = "Subscribing...";
-				try {
-					const response = await fetch("/api/subscribe", {
-						method: "POST",
-						headers: { "content-type": "application/json" },
-						body: JSON.stringify({ email }),
-					});
-					const result = await response.json();
-					status.textContent = result.message || result.error || "Something went wrong. Please try again.";
-					if (response.ok) {
-						// Auto-set cookie and navigate to blog after subscribing
-						setTimeout(() => {
-							const maxAge = 60 * 60 * 24 * 365;
-							document.cookie = `skip_landing=true; path=/; max-age=${maxAge}; SameSite=Lax`;
-							window.location.href = "/blog/";
-						}, 2000);
-					}
-				} catch {
-					status.textContent = "Unable to subscribe right now. Please try again.";
-				}
-			});
 		</script>
+		<script src="/newsletter.js" defer></script>
 	</body>
 </html>
