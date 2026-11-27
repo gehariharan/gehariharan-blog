@@ -3,10 +3,7 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta
-			name="description"
-			content="Selected systems, architectures, and projects by Hariharan Ragunathan (@gehariharan) across enterprise AI, agentic workflows, fintech, and operational platforms."
-		/>
+		<meta name="description" content="Projects built by Hariharan Ragunathan (@gehariharan): orob, Thrive Ever, wasync, Aaroha Academy, Bilkool Ezee." />
 		<title>Projects &mdash; Gehariharan</title>
 		<link rel="canonical" href="https://gehariharan.com/projects/" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
@@ -26,281 +23,51 @@
 			</nav>
 
 			<header class="post-header">
-				<h1 class="post-title">Projects & Systems</h1>
-				<p class="post-meta">
-					A living build log of systems, platforms, and experiments I’ve built over the years. Some are live in production, others pivoted into new platforms or taught valuable lessons when shelved. Here is the open breakdown from ideas to real impact.
-				</p>
+				<h1 class="post-title">Projects</h1>
+				<p class="projects-lede">Things I’ve built that people use today.</p>
 			</header>
 
-			<!-- Top Lifecycle Chart & Scorecard -->
-			<section class="projects-dashboard" aria-label="Projects overview and lifecycle breakdown">
-				<div class="dashboard-header">
-					<h2 class="dashboard-title">Ideas to Real Impact</h2>
-					<span class="dashboard-subtitle">9 Tracked Builds · 2020 &ndash; Present</span>
-				</div>
-
-				<!-- Distribution Bar -->
-				<div class="pipeline-bar" title="Project lifecycle distribution">
-					<div class="pipeline-segment seg-live" style="flex: 3;" title="Live in Production (3)"></div>
-					<div class="pipeline-segment seg-active" style="flex: 1;" title="Active R&D (1)"></div>
-					<div class="pipeline-segment seg-pivoted" style="flex: 2;" title="Pivoted & Evolved (2)"></div>
-					<div class="pipeline-segment seg-shelved" style="flex: 2;" title="Shelved & Lessons (2)"></div>
-					<div class="pipeline-segment seg-completed" style="flex: 1;" title="Mission Completed (1)"></div>
-				</div>
-
-				<!-- Stats Cards / Interactive Filter -->
-				<div class="stats-grid">
-					<div class="stat-card active" data-filter="all">
-						<span class="stat-count">9</span>
-						<span class="stat-label">All Builds</span>
-					</div>
-					<div class="stat-card" data-filter="live">
-						<span class="stat-count" style="color: #10b981;">3</span>
-						<span class="stat-label">Live & Shipped</span>
-					</div>
-					<div class="stat-card" data-filter="active">
-						<span class="stat-count" style="color: #3b82f6;">1</span>
-						<span class="stat-label">Active R&D</span>
-					</div>
-					<div class="stat-card" data-filter="pivoted">
-						<span class="stat-count" style="color: #d97706;">2</span>
-						<span class="stat-label">Pivoted</span>
-					</div>
-					<div class="stat-card" data-filter="shelved">
-						<span class="stat-count" style="color: #dc2626;">2</span>
-						<span class="stat-label">Shelved</span>
-					</div>
-					<div class="stat-card" data-filter="completed">
-						<span class="stat-count" style="color: #4b5563;">1</span>
-						<span class="stat-label">Completed</span>
-					</div>
-				</div>
-
-				<div class="filter-pills">
-					<button type="button" class="filter-btn active" data-filter="all">All</button>
-					<button type="button" class="filter-btn" data-filter="live">Live in Production</button>
-					<button type="button" class="filter-btn" data-filter="active">Active R&D</button>
-					<button type="button" class="filter-btn" data-filter="pivoted">Pivoted</button>
-					<button type="button" class="filter-btn" data-filter="shelved">Shelved / Learned</button>
-					<button type="button" class="filter-btn" data-filter="completed">Completed</button>
+			<section class="project-group" aria-labelledby="project-group-1">
+				<p class="section-label" id="project-group-1">Apps for everyone</p>
+				<div class="project-grid">
+					<a class="project-card" href="https://orob.app/" target="_blank" rel="noopener noreferrer">
+						<span class="project-logo pad"><img src="/logos/orob.svg" alt="" /></span>
+						<h3 class="project-name">orob</h3>
+						<p class="project-line">Compare live gold and silver rates from bullion dealers across India, on one screen.</p>
+						<span class="project-meta"><span class="project-status">Live · mobile app</span><span class="project-link">orob.app &nearr;</span></span>
+					</a>
+					<a class="project-card" href="https://thriveever.ai/" target="_blank" rel="noopener noreferrer">
+						<span class="project-logo bleed"><img src="/logos/thrive-ever.png" alt="" /></span>
+						<h3 class="project-name">Thrive Ever</h3>
+						<p class="project-line">Spot the patterns you fall into under pressure, then practise a different response.</p>
+						<span class="project-meta"><span class="project-status">Live</span><span class="project-link">thriveever.ai &nearr;</span></span>
+					</a>
+					<a class="project-card" href="https://github.com/gehariharan/wasync" target="_blank" rel="noopener noreferrer">
+						<span class="project-logo bleed"><img src="/logos/wasync.svg" alt="" /></span>
+						<h3 class="project-name">wasync</h3>
+						<p class="project-line">Your WhatsApp chats, archived on your own computer, with a web app, CLI and local API.</p>
+						<span class="project-meta"><span class="project-status soon">Coming soon</span><span class="project-link">GitHub &nearr;</span></span>
+					</a>
 				</div>
 			</section>
 
-			<div class="projects-grid" id="projects-container">
-				<!-- Project 1: Aaroha Academy (Live) -->
-				<article class="project-card" data-status="live">
-					<div class="project-header">
-						<div class="project-title-group">
-							<h2 class="project-title">Aaroha Academy</h2>
-							<span class="status-pill status-live">&bull; Live</span>
-						</div>
-						<span class="project-tag">AI Systems · EdTech</span>
-					</div>
-					<p class="project-desc">
-						AI-enabled learning and coaching platform with role-based workspaces, track management, streaming AI coach interactions with real-time speech transcription, prompt diagnostics, and administrative control planes.
-					</p>
-					<div class="project-meta-box">
-						<div class="project-reflection reflection-win">
-							<strong>What made it successful:</strong> Built on the foundational coaching engine from DeepReflekt. Low-latency voice interaction and structured educator oversight made AI coaching practical for real classrooms.
-						</div>
-					</div>
-					<div class="project-links">
-						<a href="https://academy.aaroha.co.in/" target="_blank" rel="noopener noreferrer">Visit Aaroha Academy &rarr;</a>
-					</div>
-				</article>
-
-				<!-- Project 2: Bilkool Ezee (Live) -->
-				<article class="project-card" data-status="live">
-					<div class="project-header">
-						<div class="project-title-group">
-							<h2 class="project-title">Bilkool Ezee</h2>
-							<span class="status-pill status-live">&bull; Live</span>
-						</div>
-						<span class="project-tag">Operations · B2B Procurement</span>
-					</div>
-					<p class="project-desc">
-						Procurement operations platform for corporate merchandise and customized goods, unifying RFQ management, shipment milestone tracking, messaging-native supplier coordination, approvals, and compliant invoicing into one unified workflow.
-					</p>
-					<div class="project-meta-box">
-						<div class="project-reflection reflection-win">
-							<strong>What made it successful:</strong> Replaced cumbersome enterprise portals with messaging-native supplier coordination, eliminating friction in high-velocity procurement.
-						</div>
-					</div>
-					<div class="project-links">
-						<a href="https://www.ezee.bilkool.com/" target="_blank" rel="noopener noreferrer">Visit Bilkool Ezee &rarr;</a>
-					</div>
-				</article>
-
-				<!-- Project 3: gehariharan.com (Live) -->
-				<article class="project-card" data-status="live">
-					<div class="project-header">
-						<div class="project-title-group">
-							<h2 class="project-title">gehariharan.com (This Platform)</h2>
-							<span class="status-pill status-live">&bull; Live</span>
-						</div>
-						<span class="project-tag">Cloudflare Edge Architecture</span>
-					</div>
-					<p class="project-desc">
-						Personal publishing and newsletter delivery engine. Historically maintained across WordPress and Blogger, now moved to a custom serverless edge architecture on Cloudflare Workers, D1 SQL database, R2 storage, and automated GitHub Actions CI/CD.
-					</p>
-					<div class="project-meta-box">
-						<div class="project-reflection reflection-win">
-							<strong>What made it successful:</strong> Built exactly the way I wanted — zero bloated plugins, instant sub-50ms global edge delivery, and complete ownership of my writing archive and subscriber list.
-						</div>
-					</div>
-					<div class="project-links">
-						<a href="/blog/">Read the Writing Archive &rarr;</a>
-					</div>
-				</article>
-
-				<!-- Project 4: Enterprise MCP & AI Tooling (Active R&D) -->
-				<article class="project-card" data-status="active">
-					<div class="project-header">
-						<div class="project-title-group">
-							<h2 class="project-title">Enterprise MCP & Agentic Tooling</h2>
-							<span class="status-pill status-active">&bull; Active R&D</span>
-						</div>
-						<span class="project-tag">AI Infrastructure · Developer Tools</span>
-					</div>
-					<p class="project-desc">
-						Custom Model Context Protocol (MCP) server architecture and secure tool calling layers connecting internal databases, live cloud telemetry, and administrative actions directly to coding and workflow agents (Copilot, Codex, Claude).
-					</p>
-					<div class="project-meta-box">
-						<div class="project-reflection">
-							<strong>What I'm exploring:</strong> Standardizing deterministic tool APIs, permission guardrails, and context-window reduction (~85% token savings) for production agent workflows.
-						</div>
-					</div>
-				</article>
-
-				<!-- Project 5: DeepReflekt (Pivoted) -->
-				<article class="project-card" data-status="pivoted">
-					<div class="project-header">
-						<div class="project-title-group">
-							<h2 class="project-title">DeepReflekt</h2>
-							<span class="status-pill status-pivoted">&bull; Pivoted & Shelved</span>
-						</div>
-						<span class="project-tag">AI Systems · Leadership Reflection</span>
-					</div>
-					<p class="project-desc">
-						Leadership development platform centered on recurring reflection capture, collaborative coach-leader continuity loops, and AI-assisted thematic insight generation across executive coaching cycles.
-					</p>
-					<div class="project-meta-box">
-						<div class="project-reflection reflection-pivot">
-							<strong>The Pivot:</strong> While standalone enterprise adoption was slow, the reflection capture models and AI interaction engine were repurposed and directly powered the coaching core of <strong>Aaroha Academy</strong>.
-						</div>
-					</div>
-				</article>
-
-				<!-- Project 6: OroB (Pivoted) -->
-				<article class="project-card" data-status="pivoted">
-					<div class="project-header">
-						<div class="project-title-group">
-							<h2 class="project-title">OroB</h2>
-							<span class="status-pill status-pivoted">&bull; Pivoted</span>
-						</div>
-						<span class="project-tag">FinTech · Spot Trading & Metals</span>
-					</div>
-					<p class="project-desc">
-						Real-time bullion trading and dynamic spot pricing platform for institutional dealer networks. Built live market rates ingestion, SKU-level spread calculation engines, multi-tenant pricing controls, and trading desk order workflows.
-					</p>
-					<div class="project-meta-box">
-						<div class="project-reflection reflection-pivot">
-							<strong>What I explored:</strong> Sub-second streaming market data, physical delivery hedging models, and high-trust transaction workflows in physical commodity markets.
-						</div>
-					</div>
-				</article>
-
-				<!-- Project 7: SchemaDesigner (Shelved) -->
-				<article class="project-card" data-status="shelved">
-					<div class="project-header">
-						<div class="project-title-group">
-							<h2 class="project-title">SchemaDesigner</h2>
-							<span class="status-pill status-shelved">&bull; Shelved Prototype</span>
-						</div>
-						<span class="project-tag">DeepTech · AI for Semiconductor Design</span>
-					</div>
-					<p class="project-desc">
-						Exploration of AI-assisted analog chip design and circuit synthesis. Built a functional end-to-end prototype including schematic parsing, SPICE simulation verification loops, and a web-based circuit visualizer.
-					</p>
-					<div class="project-meta-box">
-						<div class="project-reflection reflection-shelved">
-							<strong>Why it was shelved:</strong> Learned the deep analog design, validation, and verification pipeline and proved feasibility, but the project paused when our domain-expert partner shifted focus to other priorities.
-						</div>
-					</div>
-				</article>
-
-				<!-- Project 8: AgriTech Rewards (Shelved) -->
-				<article class="project-card" data-status="shelved">
-					<div class="project-header">
-						<div class="project-title-group">
-							<h2 class="project-title">AgriTech Rewards & Loyalty Platform</h2>
-							<span class="status-pill status-shelved">&bull; Built · Did Not Sustain</span>
-						</div>
-						<span class="project-tag">AgriTech · Field Logistics</span>
-					</div>
-					<p class="project-desc">
-						Geo-aware rewards program and distributor loyalty platform for agricultural enterprises. Implemented geo-fenced QR validation, dealer ledger settlement, and instant redemption disbursements for field farmers.
-					</p>
-					<div class="project-meta-box">
-						<div class="project-reflection reflection-shelved">
-							<strong>Why it did not sustain:</strong> The offline-tolerant mobile flow and anti-fraud location algorithms worked reliably in field tests, but sustained distributor engagement and manual dealer onboarding proved too high friction to maintain.
-						</div>
-					</div>
-				</article>
-
-				<!-- Project 9: Seattle Face Mask Army (Completed) -->
-				<article class="project-card" data-status="completed">
-					<div class="project-header">
-						<div class="project-title-group">
-							<h2 class="project-title">Seattle Face Mask Army</h2>
-							<span class="status-pill status-completed">&bull; Mission Completed</span>
-						</div>
-						<span class="project-tag">Community · Grassroots Logistics</span>
-					</div>
-					<p class="project-desc">
-						Rapid-response decentralized supply chain initiative launched during the March 2020 COVID-19 mask shortage. Mobilized 100+ home volunteers to cut, stitch, sanitize, and distribute 5,000+ cloth masks to Puget Sound healthcare workers and frontline public services.
-					</p>
-					<div class="project-meta-box">
-						<div class="project-reflection reflection-win">
-							<strong>Outcome:</strong> Successfully fulfilled urgent hospital and clinic shortages across King & Snohomish counties before commercial PPE manufacturing stabilized.
-						</div>
-					</div>
-					<div class="project-links">
-						<a href="/blog/masks-masks-masks-covid-story-from-us/">Read the Retrospective &rarr;</a>
-					</div>
-				</article>
-			</div>
-
-			<script>
-				// Client-side filtering for Projects Living Build Log
-				const filterButtons = document.querySelectorAll('.filter-btn, .stat-card');
-				const cards = document.querySelectorAll('.project-card');
-
-				function applyFilter(category) {
-					filterButtons.forEach(btn => {
-						if (btn.dataset.filter === category) {
-							btn.classList.add('active');
-						} else {
-							btn.classList.remove('active');
-						}
-					});
-
-					cards.forEach(card => {
-						if (category === 'all' || card.dataset.status === category) {
-							card.style.display = 'flex';
-						} else {
-							card.style.display = 'none';
-						}
-					});
-				}
-
-				filterButtons.forEach(btn => {
-					btn.addEventListener('click', () => {
-						const filter = btn.dataset.filter;
-						if (filter) applyFilter(filter);
-					});
-				});
-			</script>
+			<section class="project-group" aria-labelledby="project-group-2">
+				<p class="section-label" id="project-group-2">Built for businesses</p>
+				<div class="project-grid">
+					<a class="project-card" href="https://academy.aaroha.co.in/" target="_blank" rel="noopener noreferrer">
+						<span class="project-logo pad"><img src="/logos/aaroha-academy.svg" alt="" /></span>
+						<h3 class="project-name">Aaroha Academy</h3>
+						<p class="project-line">Guided learning, reflection and AI coaching for leaders, with voice conversations and coach oversight.</p>
+						<span class="project-meta"><span class="project-status">Live · invite only</span><span class="project-link">Visit &nearr;</span></span>
+					</a>
+					<a class="project-card" href="https://www.ezee.bilkool.com/" target="_blank" rel="noopener noreferrer">
+						<span class="project-logo bleed"><img src="/logos/bilkool-ezee.png" alt="" /></span>
+						<h3 class="project-name">Bilkool Ezee</h3>
+						<p class="project-line">Corporate gifting and procurement: quotes, suppliers, shipments and invoices in one place.</p>
+						<span class="project-meta"><span class="project-status">Live</span><span class="project-link">Visit &nearr;</span></span>
+					</a>
+				</div>
+			</section>
 
 			<footer class="site-footer">
 				<span>&copy; 2026 Hariharan Ragunathan</span>

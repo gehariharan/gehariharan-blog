@@ -4,8 +4,9 @@
 	"private": true,
 	"scripts": {
 		"build:posts": "node scripts/build-posts.mjs",
+		"build:projects": "node scripts/build-projects.mjs",
 		"new:post": "node scripts/new-post.mjs",
-		"deploy": "node scripts/build-posts.mjs && wrangler deploy",
+		"deploy": "node scripts/build-posts.mjs && node scripts/build-projects.mjs && wrangler deploy",
 		"dev": "wrangler dev",
 		"start": "wrangler dev",
 		"test": "vitest",

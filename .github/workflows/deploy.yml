@@ -27,6 +27,9 @@ jobs:
       - name: Build markdown posts
         run: npm run build:posts
 
+      - name: Build projects page and About apps section
+        run: npm run build:projects
+
       # Run the Wrangler version pinned in package-lock.json so wrangler.jsonc is read.
       - name: Deploy with Wrangler
         run: npx wrangler deploy
